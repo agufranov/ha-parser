@@ -3,12 +3,15 @@ html(ng-app='app')
     script(src='lib/jquery/dist/jquery.min.js')
     script(src='lib/angular/angular.min.js')
     script(src='lib/ramda/dist/ramda.min.js')
+    script(src='https://maps.googleapis.com/maps/api/js')
+    script(src='gmaps.js')
     script(src='app.js')
   body(ng-controller='mainCtrl')
     .filters
       select(ng-model='q.station')
         option(value='') No filter
         option(ng-repeat='station in stations' value='{{station}}') {{station}}
+    #map-canvas(style='height: 100%;')
     table
       tr(ng-repeat='item in items | filter:q')
         td {{item.date}}
