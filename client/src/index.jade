@@ -1,7 +1,18 @@
-html
+html(ng-app='app')
   head
     script(src='lib/jquery/dist/jquery.min.js')
     script(src='lib/angular/angular.min.js')
+    script(src='lib/ramda/dist/ramda.min.js')
     script(src='app.js')
-  body
-    div Hello world
+  body(ng-controller='mainCtrl')
+    .filters
+      select(ng-model='q.station')
+        option(value='') No filter
+        option(ng-repeat='station in stations' value='{{station}}') {{station}}
+    table
+      tr(ng-repeat='item in items | filter:q')
+        td {{item.date}}
+        td {{item.station}}
+        td {{item.address}}
+        td {{item.price}}
+        // td {{item}}
